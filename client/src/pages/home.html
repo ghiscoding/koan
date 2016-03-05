@@ -1,0 +1,54 @@
+<template>
+  <require from="../assets/styles/home.css"></require>
+
+  <div class="message-box">
+    <form submit.trigger="createPost($event)">
+      <textarea value.bind="postBox.message" class="form-control" name="message" placeholder="Type your post here..." disabled.bind="postBox.disabled"></textarea>
+
+      <div class="message-box-tools">
+        <input type="submit" class="btn btn-default btn-sm pull-right" value="Post">
+      </div>
+    </form>
+  </div>
+
+  <ul class="media-list posts">
+    <li class="media post" repeat.for="post of posts" id="post_${post.id}">
+      <a href="#" class="media-left">
+        <img class="media-object" src.bind="post.from.picture" alt="">
+      </a>
+      <div class="media-body post-body">
+        <h5 class="media-heading">
+          <a href="#">${post.from.name}</a>
+          <span if.bind="post.to"><span class="glyphicon glyphicon-play"></span> <a href="#">${post.to.name}</a></span>
+        </h5>
+        ${post.message}
+        <small class="post-tools">
+          ${post.createdTime |  dateFormat:'MMM DD, YYYY h:mm:ss a'}
+          &middot; <span class="glyphicon glyphicon-${post.to ? 'envelope' : 'globe'}"></span>
+        </small>
+        <ul class="media-list post-comments">
+          <li class="media"><span class="arrow-up-small"></span></li>
+          <li class="media post-comment" repeat.for="comment of post.comments">
+            <a href="#" class="media-left">
+              <img class="media-object" src.bind="comment.from.picture" alt="">
+            </a>
+            <div class="media-body story-comment-body">
+              <small><a href="#" class="bold">${comment.from.name}</a> ${comment.message}</small>
+              <small class="post-comment-tools">
+                ${comment.createdTime |  dateFormat:'M/D/YY h:mm:ss a'}
+              </small>
+            </div>
+          </li>
+          <li class="media post-comment comment-box">
+            <a href="#" class="media-left">
+              <img class="media-object" src.bind="user.picture" alt="">
+            </a>
+            <div class="media-body post-comment-body">
+              <textarea msd-elastic value.bind="post.commentBox.message" keyup.delegate="createComment($event, post)" disabled.bind="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</template>

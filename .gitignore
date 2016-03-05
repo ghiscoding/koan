@@ -15,6 +15,7 @@ results
 
 npm-debug.log
 node_modules/
+client/jspm_packages/
 
 # KOAN
 
@@ -22,6 +23,7 @@ dist
 .tmp
 .nodemon
 bower_components/
+/client/jspm_packages/*
 .DS_Store
 .nodemonignore
 .sass-cache/

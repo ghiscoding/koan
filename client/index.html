@@ -1,140 +1,27 @@
 <!doctype html>
-<html lang="en" ng-app="koan">
-<head>
-  <base href="/">
-  <meta charset="utf-8">
-  <meta name="description" content="KOAN Stack (Koa, Angular, Node.js) - A real-time full-stack JavaScript Web development framework.">
-  <script>
-    // if user logs in with oauth, user token will be in query string so look for it. otherwise, check browser storage for token
-    var tokenParamMatch = RegExp('[?&]user=([^&]*)').exec(window.location.search),
-        tokenParam = tokenParamMatch && decodeURIComponent(tokenParamMatch[1].replace(/\+/g, ' '));
-    if (tokenParam) {
-      var data = JSON.parse(tokenParam);
-      window.localStorage.token = data.token;
-      window.localStorage.user = JSON.stringify(data.user);
-    } else {
-      var token = window.sessionStorage.token || window.localStorage.token,
-          user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
-      if (!user || user.exp < Math.round(new Date().getTime() / 1000)) window.location.replace('/login.html');
-    }
-  </script>
-  <title ng-bind="common.title">KOAN</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="/app.css">
-</head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="KOAN Stack (Koa, Aurelia, Node.js) - A real-time full-stack JavaScript Web development framework.">
+    <script src="/auth/session.js"></script>
+    <title>KOAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" style="margin-right: 25px;" href="/">
-        <img class="brand-image" src="/images/koan.png" width="97" height="30" alt="KOAN">
-      </a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-flag"></span>
-            Notifications
-            <span class="badge" ng-bind="common.user.notifications.length"></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li ng-repeat="notification in common.user.notifications">
-              <a ng-href="/notifications/{{::notification.id}}">{{::notification.title}}</a> {{::notification.message}}
-            </li>
-            <li ng-if="!common.user.notifications" class="dropdown-header">No new notifications</li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-envelope"></span>
-            Messages
-            <span class="badge" ng-bind="common.user.messages.length"></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li ng-repeat="message in common.user.messages">
-              <a ng-href="/messages/{{::message.id}}">{{::message.title}}</a> {{::message.message}}
-            </li>
-            <li ng-if="!common.user.messages" class="dropdown-header">No unread messages</li>
-            <li class="divider"></li>
-            <li>
-              <a href="#"><span class="glyphicon glyphicon-envelope"></span> All Messages</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <form ng-submit="common.search()" class="navbar-form navbar-left hidden-xs hidden-sm">
-        <div class="form-group">
-          <input name="q" type="text" ng-model="common.searchQuery" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img ng-src="{{::common.user.picture}}" alt="">
-            <span class="online-indicator" ng-style="common.onlineIndicatorStyle"></span>
-            <span ng-bind="common.user.name"></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="" ng-click="common.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <ul class="nav nav-pills nav-stacked sidenav">
-        <li ng-class="common.active.home"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li ng-class="common.active.profile"><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-      </ul>
+    <title>Aurelia</title>
+    <link rel="stylesheet" type="text/css" href="/jspm_packages/npm/font-awesome@4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/src/assets/styles/styles.css">
+  </head>
+  <body aurelia-app="main">
+    <div class="splash">
+      <div class="message">Aurelia</div>
+      <i class="fa fa-spinner fa-spin"></i>
     </div>
 
-    <div class="col-md-7" ng-view></div>
-
-    <div class="col-md-3"></div>
-  </div>
-  <hr>
-  <footer>
-    <p>
-      KOAN &copy; Teoman Soygul (MIT License) &middot;
-      <a type="button" href="https://github.com/soygul/koan" class="btn btn-primary"><strong>View on GitHub</strong></a>
-      <button type="button" ng-click="common.clearDatabase()" class="btn btn-xs btn-warning pull-right"><strong>Clear Database</strong></button>
-    </p>
-  </footer>
-</div>
-
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/lodash/lodash.js"></script>
-<script src="/bower_components/angular/angular.js"></script>
-<script src="/bower_components/angular-animate/angular-animate.js"></script>
-<script src="/bower_components/angular-route/angular-route.js"></script>
-<script src="/bower_components/angular-elastic/elastic.js"></script>
-<script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/app.js"></script>
-<script src="/modules/common/common.js"></script>
-<script src="/modules/common/api-service.js"></script>
-<script src="/modules/home/home.js"></script>
-<script src="/modules/home/home-controller.js"></script>
-<script src="/modules/profile/profile.js"></script>
-<script src="/modules/profile/profile-controller.js"></script>
-</body>
+    <script src="jspm_packages/npm/bluebird@3.3.3/js/browser/bluebird.min.js"></script>
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.import('aurelia-bootstrapper');
+    </script>
+  </body>
 </html>

@@ -1,0 +1,72 @@
+<template bindable="router">
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="margin-right: 25px;" href="/">
+          <img class="brand-image" src="/src/assets/images/koan.png" width="97" height="30" alt="KOAN">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-flag"></span>
+              Notifications
+              <span class="badge" value.bind="user.notifications.length"></span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li repeat.for="notification of user.notifications">
+                <a href="/notifications/${notification.id}">${notification.title}</a> ${notification.message}
+              </li>
+              <li if.bind="!user.notifications || user.notifications.length === 0" class="dropdown-header">No new notifications</li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-envelope"></span>
+              Messages
+              <span class="badge" value.bind="user.messages.length"></span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li repeat.for="message of user.messages">
+                <a href="/messages/${message.id}">${message.title}</a> ${message.message}
+              </li>
+              <li if.bind="!user.messages || user.messages.length === 0" class="dropdown-header">No unread messages</li>
+              <li class="divider"></li>
+              <li>
+                <a href="#"><span class="glyphicon glyphicon-envelope"></span> All Messages</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form submit.trigger="search()" class="navbar-form navbar-left hidden-xs hidden-sm">
+          <div class="form-group">
+            <input name="q" type="text" value.bind="searchQuery" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img alt="" src.bind="user.picture">
+              <span class="online-indicator" style.bind="onlineIndicatorStyle"></span>
+              <span>${user.name}</span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="" click.trigger="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>

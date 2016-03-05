@@ -4,7 +4,6 @@
   "noyield": true,
   "validthis": true,
   "globals": {
-    "angular": false,
     "describe": false,
     "it": false,
     "expect": false,

@@ -1,25 +1,41 @@
-[![KOAN](/client/images/koan.png)](https://koan.herokuapp.com)
+[![KOAN](/client/src/assets/images/koan.png)](https://koan.herokuapp.com)
 
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
-KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) along with [MongoDB](https://www.mongodb.org/) and [WebSockets](https://developer.mozilla.org/en/docs/WebSockets). A summary of tech stack:
-* **Client**: AngularJS and Twitter Bootstrap with pure html partials (no server side rendering so it's fully static and CDN ready). Bower packages are located at `client\bower_packages`.
+###Fork
+This boilerplate is based on the [koan](https://github.com/soygul/koan) stack. The intetion is to completely replace AngularJS by Aurelia and also to replace Grunt by GulpJS.
+
+KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [Aurelia](http://aurelia.io/), and [Node.js](http://www.nodejs.org/) along with [MongoDB](https://www.mongodb.org/) and [WebSockets](https://developer.mozilla.org/en/docs/WebSockets). A summary of tech stack:
+* **Client**: Aurelia and Twitter Bootstrap with pure html partials (no server side rendering so it's fully static and CDN ready). Bower packages are located at `client\bower_packages`.
 * **Server**: Koa for RESTful API serving on Node.js.
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
 * OAuth 2 is used for social authentications. Instead of auth cookies, we use JWT along with HTML5 *local storage*.
-* Grunt tasks are used to facilitate development and testing.
 * MongoDB for persistence.
 
 ## Live Example
 Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
 
+## TODO
+
+Work in Progress! Please help out completing this skeleton app ;)
+
+Changes to Aurelia Stack defaults:
+- SASS for styles (css)
+- Port remaining skeleton-app files such as [build files](https://github.com/aurelia/skeleton-navigation/tree/master/build)
+- Replace all Grunt implementation by Gulp
+- Replace all original KOAN tests with Gulp/Protractor/Jasmine/Karma/...
+
 ## Getting Started
 Make sure that you have Node.js v0.12 or higher, and MongoDB v2 or higher (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
 
 ```bash
-git clone --depth 1 https://github.com/soygul/koan.git
+git clone --depth 1 https://github.com/ghiscoding/koan.git
 cd koan
 npm install
+
+cd client
+jspm install
+cd..
 npm start
 ```
 
@@ -54,17 +70,17 @@ heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oau
 
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
-* Client (unit): Jasmine + Karma (Angular default)
-* Client (e2e): Jasmine + Protractor (Angular default)
+* Client (unit): Jasmine + Karma (Aurelia default)
+* Client (e2e): Jasmine + Protractor (Aurelia default)
 * Server: Mocha/SuperTest/Should (Koa default)
 
 Server tests utilize [co](https://github.com/tj/co) so you can use `*`/`yield` expressions while writing tests. See [/test/server/users.js](/test/server/users.js) as an example.
 
 ## Credits
-Client side is entirely based on the official: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
+Client side is entirely based on the official: [Aurelia Skeleton](https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-es2016). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
 
 ## The Name
-The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
+The project name is an acronym for Koa, Aurelia, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
 
 ## License
 MIT
@@ -75,8 +91,8 @@ Screenshots from the demo app, in case Heroku is down.
 
 **Login page:**
 
-![Login Page](/client/images/scrshot_login.png)
+![Login Page](/client/src/assets/images/scrshot_login.png)
 
 **User home page:**
 
-![Home Page](/client/images/scrshot_home.png)
+![Home Page](/client/src/assets/images/scrshot_home.png)

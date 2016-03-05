@@ -1,0 +1,33 @@
+<template>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <require from="font-awesome/css/font-awesome.css"></require>
+  <require from="assets/styles/app.css"></require>
+
+  <nav-bar></nav-bar>
+
+  <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <ul class="nav nav-pills nav-stacked sidenav">
+            <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+              <a href.bind="row.href"><span class="${row.settings.icon}"></span> ${row.title}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-7">
+          <router-view></router-view>
+        </div>
+
+        <div class="col-md-3"></div>
+      </div>
+      <hr>
+      <footer>
+        <p>
+          KOAN &copy; Teoman Soygul (MIT License) &middot;
+          <a type="button" href="https://github.com/ghiscoding/koan" class="btn btn-primary"><strong>View on GitHub</strong></a>
+          <button type="button" click.trigger="clearDatabase()" class="btn btn-xs btn-warning pull-right"><strong>Clear Database</strong></button>
+        </p>
+      </footer>
+  </div>
+</template>

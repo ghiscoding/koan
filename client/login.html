@@ -4,64 +4,23 @@
   <meta charset="utf-8">
   <title>Welcome to KOAN - Log In, Sign Up or Learn More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="/bower_components/bootstrap-social/bootstrap-social.css">
-  <style type="text/css">
-    body {
-      background-color: #f8f8f8;
-    }
-
-    /* Left-side bullets and large logo */
-
-    .logo-align {
-      margin-top: 5%;
-      margin-bottom: 10%;
-      margin-left: 5%;
-      max-width: 75%;
-    }
-
-    .logo-align .logo-info {
-      margin-bottom: 40px;
-      margin-left: 5px;
-      margin-top: 25px;
-      font-size: 18px;
-      line-height: 20px;
-    }
-
-    .logo-align .media {
-      margin-top: 35px;
-    }
-
-    .logo-align .media img {
-      margin-right: 10px;
-    }
-
-    /* Login layout */
-
-    .social-login {
-      margin-left: 20%;
-      padding-bottom: 15px;
-
-    }
-
-    .social-login a {
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="/jspm_packages/github/twbs/bootstrap@3.3.6/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/jspm_packages/npm/font-awesome@4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/jspm_packages/github/lipis/bootstrap-social@4.12.0/bootstrap-social.css">
+  <link rel="stylesheet" type="text/css" href="/src/assets/styles/login.css">
 </head>
 <body>
 <div class="navbar navbar-default navbar-static-top">
   <div class="container visible-xs">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <img class="brand-image" src="/images/koan.png" width="97" height="30" alt="KOAN">
+        <img class="brand-image" src="/src/assets/images/koan.png" width="97" height="30" alt="KOAN">
       </a>
     </div>
   </div>
   <div class="container ">
     <ul class="nav navbar-nav navbar-right">
-      <a type="button" href="https://github.com/soygul/koan" class="btn btn-success navbar-btn"><strong>View on GitHub</strong></a>
+      <a type="button" href="https://github.com/ghiscoding/koan" class="btn btn-success navbar-btn"><strong>View on GitHub</strong></a>
     </ul>
   </div>
 </div>
@@ -70,16 +29,16 @@
     <div class="col-sm-6">
       <div class="logo-align hidden-xs">
         <a href="/">
-          <img src="/images/koan.png" alt="KOAN">
+          <img src="/src/assets/images/koan.png" alt="KOAN">
         </a>
 
         <h1 class="logo-info">
-          KOAN (Koa, Angular, Node): Full stack JavaScript Web development boilerplate.
+          Full stack JavaScript Web development boilerplate.
         </h1>
 
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/koa.png" alt="Koa">
+            <img class="media-object" src="/src/assets/images/koa.png" alt="Koa">
           </div>
           <div class="media-body">
             Koa framework provides the RESTful backend API, utilizing the harmony generators.
@@ -87,15 +46,15 @@
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/angularjs.png" alt="AngularJS">
+            <img class="media-object" src="/src/assets/images/aurelia-logo.png" width="182" alt="Aurelia">
           </div>
           <div class="media-body">
-            AngularJS is our fully static client side app framework, and it is heroic!
+            Aurelia is our fully static client side app framework.
           </div>
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/nodejs.png" alt="Node.js">
+            <img class="media-object" src="/src/assets/images/nodejs.png" alt="Node.js">
           </div>
           <div class="media-body" style="padding-top: 10px;">
             Node.js is super glue, runtime for the backend, build system for the front.
@@ -103,7 +62,7 @@
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="images/mongodb.png" alt="MongoDB">
+            <img class="media-object" src="/src/assets/images/mongodb.png" alt="MongoDB">
           </div>
           <div class="media-body">
             Finally, MongoDB is our NoSQL database of choice in this stack and sample app.
@@ -158,35 +117,14 @@
   <hr>
   <footer>
     <p>
-      KOAN &copy; Teoman Soygul (MIT License)
+      A Fork of KOAN &copy; Teoman Soygul (MIT License)
       &middot; <a href="https://github.com/soygul/koan">GitHub Repo</a>
     </p>
   </footer>
 </div>
 
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script>
-  // send form data with AJAX and store the incoming access token before redirecting user to index page
-  $('form').submit(function (event) {
-    event.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '/login',
-      data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
-      contentType: 'application/json',
-      dataType: 'json',
-      success: function (data) {
-        var storage = $("#rememberme").is(':checked') ? window.localStorage : window.sessionStorage;
-        storage.token = data.token;
-        storage.user = JSON.stringify(data.user);
-        window.location.replace('/');
-      },
-      error: function (res) {
-        $('form p.help-block').text(res.responseText);
-      }
-    });
-  });
-</script>
+<script src="/jspm_packages/github/components/jquery@2.2.1/jquery.js"></script>
+<script src="/jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.js"></script>
+<script src="/auth/login.js"></script>
 </body>
 </html>

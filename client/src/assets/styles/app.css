@@ -83,3 +83,15 @@ body {
   margin-left: 1px;
   margin-bottom: 1px;
 }
+
+/*----------------------------------------------------------------------
+ * Profile
+ *---------------------------------------------------------------------*/
+/* Layout */
+
+.profile-image {
+  width: 140px;
+  height: 140px;
+  margin-top: 10px;
+  margin-left: 10px;
+}

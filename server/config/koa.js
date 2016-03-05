@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.use(logger());
   }
   if (config.app.env === 'development') {
-    app.use(require('koa-livereload')({excludes: ['/modules']}));
+    //app.use(require('koa-livereload')({excludes: ['/modules']}));
   }
   app.use(cors({
     maxAge: config.app.cacheTime / 1000,
