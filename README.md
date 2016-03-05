@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
 ###Fork
-This boilerplate is based on the [koan](https://github.com/soygul/koan) stack. The intetion is to completely replace AngularJS by Aurelia and also to replace Grunt by GulpJS.
+This boilerplate is based on the [koan](https://github.com/soygul/koan) stack. The intention is to completely replace AngularJS by Aurelia and also to replace Grunt by GulpJS.
 
+##KOAN Stack
 KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [Aurelia](http://aurelia.io/), and [Node.js](http://www.nodejs.org/) along with [MongoDB](https://www.mongodb.org/) and [WebSockets](https://developer.mozilla.org/en/docs/WebSockets). A summary of tech stack:
 * **Client**: Aurelia and Twitter Bootstrap with pure html partials (no server side rendering so it's fully static and CDN ready). Bower packages are located at `client\bower_packages`.
 * **Server**: Koa for RESTful API serving on Node.js.
@@ -16,14 +17,20 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
 
 ## TODO
-
 Work in Progress! Please help out completing this skeleton app ;)
 
 Changes to Aurelia Stack defaults:
 - SASS for styles (css)
 - Port remaining skeleton-app files such as [build files](https://github.com/aurelia/skeleton-navigation/tree/master/build)
 - Replace all Grunt implementation by Gulp
-- Replace all original KOAN tests with Gulp/Protractor/Jasmine/Karma/...
+
+## What is working
+- The app & stack is fully working
+
+## What is missing
+- Tests
+- GulpJS
+- Livereload/watch
 
 ## Getting Started
 Make sure that you have Node.js v0.12 or higher, and MongoDB v2 or higher (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
@@ -67,12 +74,6 @@ Optionally, you can pass credentials to KOAN via environment variables as it mig
 ```bash
 heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oauth_secret GOOGLE_SECRET=google_oauth_secret
 ```
-
-## Testing
-You can run all the tests with `npm test`. Tests are run with:
-* Client (unit): Jasmine + Karma (Aurelia default)
-* Client (e2e): Jasmine + Protractor (Aurelia default)
-* Server: Mocha/SuperTest/Should (Koa default)
 
 Server tests utilize [co](https://github.com/tj/co) so you can use `*`/`yield` expressions while writing tests. See [/test/server/users.js](/test/server/users.js) as an example.
 
